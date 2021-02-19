@@ -38,7 +38,7 @@
             //Instancia la clase mysqli con el constructor parametrizado
             $mysqli = new mysqli(Config::BBDD_HOST, Config::BBDD_USUARIO, Config::BBDD_CLAVE, Config::BBDD_NOMBRE);
             //Arma la query
-            $sql = "INSERT INTO productos (
+            $sql = "INSERT INTO producto (
                         nombre, 
                         cantidad, 
                         precio, 
@@ -66,7 +66,7 @@
         public function actualizar(){
     
             $mysqli = new mysqli(Config::BBDD_HOST, Config::BBDD_USUARIO, Config::BBDD_CLAVE, Config::BBDD_NOMBRE);
-            $sql = "UPDATE productos SET
+            $sql = "UPDATE producto SET
                     nombre = '".$this->nombre."',
                     cantidad = '".$this->cantidad."',
                     precio = '".$this->precio."',
@@ -82,7 +82,7 @@
     
         public function eliminar($idproducto){
             $mysqli = new mysqli(Config::BBDD_HOST, Config::BBDD_USUARIO, Config::BBDD_CLAVE, Config::BBDD_NOMBRE);
-            $sql = "DELETE FROM productos WHERE idproducto = " . $idproducto;
+            $sql = "DELETE FROM producto WHERE idproducto = " . $idproducto;
             //Ejecuta la query
             if (!$mysqli->query($sql)) {
                 printf("Error en query: %s\n", $mysqli->error . " " . $sql);
@@ -99,7 +99,7 @@
                             descripcion, 
                             imagen,
                             fk_idtipoproducto 
-                    FROM productos 
+                    FROM producto 
                     WHERE idproducto = " . $this->idproducto;
             if (!$resultado = $mysqli->query($sql)) {
                 printf("Error en query: %s\n", $mysqli->error . " " . $sql);
@@ -120,7 +120,7 @@
         }
     
       public function obtenerTodos(){
-            $aProductos = null;
+            $aproducto = null;
             $mysqli = new mysqli(Config::BBDD_HOST, Config::BBDD_USUARIO, Config::BBDD_CLAVE, Config::BBDD_NOMBRE);
             $resultado = $mysqli->query("SELECT
                 idproducto,
@@ -130,7 +130,7 @@
                 descripcion,
                 imagen,
                 fk_idtipoproducto
-            FROM productos");    
+            FROM producto");    
     
             if($resultado){
                 while ($fila = $resultado->fetch_assoc()) {
@@ -142,10 +142,10 @@
                     $obj->descripcion = $fila["descripcion"];
                     $obj->imagen = $fila["imagen"];
                     $obj->fk_idtipoproducto = $fila["fk_idtipoproducto"];
-                    $aProductos[] = $obj;
+                    $aproducto[] = $obj;
     
                 }
-                return $aProductos;
+                return $aproducto;
             }
         }
     } 

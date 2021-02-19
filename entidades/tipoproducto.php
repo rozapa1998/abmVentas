@@ -27,7 +27,7 @@
             //Instancia la clase mysqli con el constructor parametrizado
             $mysqli = new mysqli(Config::BBDD_HOST, Config::BBDD_USUARIO, Config::BBDD_CLAVE, Config::BBDD_NOMBRE);
             //Arma la query
-            $sql = "INSERT INTO tipoproductos (
+            $sql = "INSERT INTO tipoproducto (
                         nombre
                     ) VALUES (
                         '" . $this->nombre ."'
@@ -45,7 +45,7 @@
         public function actualizar(){
     
             $mysqli = new mysqli(Config::BBDD_HOST, Config::BBDD_USUARIO, Config::BBDD_CLAVE, Config::BBDD_NOMBRE);
-            $sql = "UPDATE tipoproductos SET
+            $sql = "UPDATE tipoproducto SET
                     nombre = '".$this->nombre."'
                     WHERE idtipoproducto = " . $this->idtipoproducto;
               
@@ -57,7 +57,7 @@
     
         public function eliminar($idtipoproducto){
             $mysqli = new mysqli(Config::BBDD_HOST, Config::BBDD_USUARIO, Config::BBDD_CLAVE, Config::BBDD_NOMBRE);
-            $sql = "DELETE FROM tipoproductos WHERE idtipoproducto = " . $idtipoproducto;
+            $sql = "DELETE FROM tipoproducto WHERE idtipoproducto = " . $idtipoproducto;
             //Ejecuta la query
             if (!$mysqli->query($sql)) {
                 printf("Error en query: %s\n", $mysqli->error . " " . $sql);
@@ -69,7 +69,7 @@
             $mysqli = new mysqli(Config::BBDD_HOST, Config::BBDD_USUARIO, Config::BBDD_CLAVE, Config::BBDD_NOMBRE);
             $sql = "SELECT idtipoproducto, 
                             nombre 
-                    FROM tipoproductos 
+                    FROM tipoproducto 
                     WHERE idtipoproducto = " . $this->idtipoproducto;
             if (!$resultado = $mysqli->query($sql)) {
                 printf("Error en query: %s\n", $mysqli->error . " " . $sql);
@@ -87,7 +87,7 @@
             $mysqli = new mysqli(Config::BBDD_HOST, Config::BBDD_USUARIO, Config::BBDD_CLAVE, Config::BBDD_NOMBRE);
             $sql = "SELECT idtipoproducto, 
                             nombre 
-                    FROM tipoproductos 
+                    FROM tipoproducto 
                     WHERE nombre = '$nombre'";
             if (!$resultado = $mysqli->query($sql)) {
                 printf("Error en query: %s\n", $mysqli->error . " " . $sql);
@@ -107,7 +107,7 @@
             $resultado = $mysqli->query("SELECT
                                             idtipoproducto,
                                             nombre
-                                        FROM tipoproductos");    
+                                        FROM tipoproducto");    
     
             if($resultado){
                 while ($fila = $resultado->fetch_assoc()) {

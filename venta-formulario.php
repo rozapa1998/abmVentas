@@ -144,10 +144,10 @@
                         <label for="txtPrecioUnitario">Precio unitario:</label>
                         <input type="number" name="txtPrecioUnitario" id="txtPrecioUnitario" class="form-control" value="<?php echo $venta->preciounitario?>">
                     </div>
-                    <!--<div class="col-6 mb-3">
+                    <div class="col-6 mb-3">
                         <label for="txtTotal">Total:</label>
-                        <input type="number" name="txtTotal" id="txtTotal" class="form-control" value="<?php /*echo $venta->total*/ ?>">
-                    </div>-->
+                        <input type="number" name="txtTotal" id="txtTotal" class="form-control" value="<?php echo $venta->total ?>">
+                    </div>
                 </div>
             </form>
             <script>

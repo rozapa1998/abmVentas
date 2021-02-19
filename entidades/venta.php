@@ -40,7 +40,7 @@
             //Instancia la clase mysqli con el constructor parametrizado
             $mysqli = new mysqli(Config::BBDD_HOST, Config::BBDD_USUARIO, Config::BBDD_CLAVE, Config::BBDD_NOMBRE);
             //Arma la query
-            $sql = "INSERT INTO ventas (
+            $sql = "INSERT INTO venta (
                         fk_idcliente,
                         fk_idproducto,
                         fecha, 
@@ -68,7 +68,7 @@
         public function actualizar(){
     
             $mysqli = new mysqli(Config::BBDD_HOST, Config::BBDD_USUARIO, Config::BBDD_CLAVE, Config::BBDD_NOMBRE);
-            $sql = "UPDATE ventas SET
+            $sql = "UPDATE venta SET
                         fk_idcliente = '".$this->fk_idcliente."',
                         fk_idproducto = '".$this->fk_idproducto."',
                         fecha = '".$this->fecha."',
@@ -85,7 +85,7 @@
     
         public function eliminar(){
             $mysqli = new mysqli(Config::BBDD_HOST, Config::BBDD_USUARIO, Config::BBDD_CLAVE, Config::BBDD_NOMBRE);
-            $sql = "DELETE FROM ventas WHERE idventa = " . $this->idventa;
+            $sql = "DELETE FROM venta WHERE idventa = " . $this->idventa;
             //Ejecuta la query
             if (!$mysqli->query($sql)) {
                 printf("Error en query: %s\n", $mysqli->error . " " . $sql);
@@ -102,7 +102,7 @@
                            cantidad, 
                            preciounitario, 
                            total
-                    FROM ventas 
+                    FROM venta 
                     WHERE idventa = " . $this->idventa;
             if (!$resultado = $mysqli->query($sql)) {
                 printf("Error en query: %s\n", $mysqli->error . " " . $sql);
@@ -123,7 +123,7 @@
         }
     
       public function obtenerTodos(){
-            $aVentas = null;
+            $aventa = null;
             $mysqli = new mysqli(Config::BBDD_HOST, Config::BBDD_USUARIO, Config::BBDD_CLAVE, Config::BBDD_NOMBRE);
             $resultado = $mysqli->query("SELECT
                                             idventa,
@@ -133,7 +133,7 @@
                                             fecha,
                                             preciounitario,
                                             total
-                                         FROM ventas");
+                                         FROM venta");
     
             if($resultado){
                 while ($fila = $resultado->fetch_assoc()) {
@@ -145,10 +145,10 @@
                     $obj->fecha = $fila["fecha"];
                     $obj->preciounitario = $fila["preciounitario"];
                     $obj->total = $fila["total"];
-                    $aVentas[] = $obj;
+                    $aventa[] = $obj;
     
                 }
-                return $aVentas;
+                return $aventa;
             }
         }
     } 
